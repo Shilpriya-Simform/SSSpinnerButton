@@ -165,16 +165,7 @@ private extension SSSpinnerButton {
         if self.cornrRadius == 0 {
             self.cornrRadius = self.layer.cornerRadius
         }
-        if layer.sublayers != nil {
-            
-            for item in layer.sublayers! where item is CAGradientLayer {
-                
-                item.cornerRadius = self.cornrRadius
-                item.masksToBounds = true
-            }
-        }
-        self.layer.cornerRadius = self.cornrRadius
-        self.layer.masksToBounds = true
+      
         
         if self.image(for: .normal) != nil && self.normalTitle != nil {
             let spacing: CGFloat = 10
@@ -207,6 +198,17 @@ public extension SSSpinnerButton {
     ///   - spinnerSize: size of spinner layer
     ///   - complete: complation block (call after animation start)
     func startAnimate(spinnerType: SpinnerType = .ballClipRotate, spinnercolor: UIColor = .gray, spinnerSize: UInt?, complete: (() -> Void)?) {
+        if layer.sublayers != nil {
+            
+            for item in layer.sublayers! where item is CAGradientLayer {
+                
+                item.cornerRadius = self.cornrRadius
+                item.masksToBounds = true
+            }
+        }
+        self.layer.cornerRadius = self.cornrRadius
+        self.layer.masksToBounds = true
+        
         if self.cornrRadius == 0 {
             self.cornrRadius = self.layer.cornerRadius
         }
